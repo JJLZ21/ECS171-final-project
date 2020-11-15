@@ -4,6 +4,8 @@ const spawn = require("child_process").spawn;
 var app = express();
 const port = 3000;
 
+app.use(express.static('public'));
+
 app.get('/', (req, res) => {
     var dataToSend;
 
@@ -19,6 +21,10 @@ app.get('/', (req, res) => {
 	console.log('py process finished with code ' + code);
 	res.send(dataToSend);
     });
+});
+
+app.get('/react', (req, res) => {
+    res.sendFile(__dirname + '/src/index.html');
 });
 
 app.listen(port, () => {
