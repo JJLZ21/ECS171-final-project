@@ -17,11 +17,47 @@ const componentsMade = [
   'UnorderedList - which takes an array of "items" and returns a <ul> element with <li>, elements of each of those items within it',
 ];
 
+// based on: https://reactjs.org/docs/faq-ajax.html
+class TestRequest extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        // set the state to just have the request result
+        this.state = {
+            requestResult: "None"
+        };
+    }
+
+    // after the component is successfully mounted, create a GET request to the python server
+    // change the requestResult to whether it was succesfully received or not
+    // **use json to read data from the server, see the above link
+    componentDidMount() {
+        fetch("./").then(
+        (result) => {
+            this.setState({
+                requestResult: "Successful request from server!"
+            });
+        },
+        (error) => {
+            this.setState({
+                requestResult: "Error"
+            });
+        });
+    }
+
+    // function of what to render onto the DOM
+    render() {
+        const { requestResult } = this.state;
+        return requestResult;
+    }
+}
+
 /* the main page for the index route of this app */
 const HelloWorld = function() {
   return (
     <div>
-      <h1>Hello World!</h1>
+      <h1><TestRequest /></h1>
 
       <p>This is a starter <a href="http://glitch.com">Glitch</a> app for React! It uses 
         only a few dependencies to get you started on working with React:</p>
