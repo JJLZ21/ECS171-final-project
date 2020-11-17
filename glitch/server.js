@@ -13,13 +13,13 @@ app.get('/', (req, res) => {
 
     // Collect the data from the script
     pyprocess.stdout.on('data', (data) => {
-	dataToSend = data.toString();
-	console.log(dataToSend);
+        dataToSend = data.toString();
+        console.log(dataToSend);
     });
 
     pyprocess.on('close', (code) => {
-	console.log('py process finished with code ' + code);
-	res.send(dataToSend);
+        console.log('py process finished with code ' + code);
+        res.send(dataToSend);
     });
 });
 
