@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/react', (req, res) => {
-    res.sendFile(__dirname + '/src/index.html');
+    res.sendFile(__dirname + '/public/index.html');
 });
 
 app.listen(port, () => {
