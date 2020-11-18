@@ -6,6 +6,8 @@ Make sure the files in master/main are up to date and use:
 
 Use URL: `JJLZ21/ECS171-final-project:glitch`
 
+*Note: this copies the changes that are currently available in the main branch*
+
 
 ## Running locally
 
