@@ -35,6 +35,7 @@ class TestRequest extends React.Component {
     // change the requestResult to whether it was succesfully received or not
     // **use json to read data from the server, see the above link
     componentDidMount() {
+        // NON BLOCkING
         di.requestData((data) => {
             let columns = [...data.keys()];
             this.setState({
