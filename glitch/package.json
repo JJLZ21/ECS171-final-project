@@ -7,6 +7,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "jsx-loader": "^0.13.2",
+    "pandas": "0.0.3",
+    "pickle": "^0.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "webpack": "^5.4.0",
