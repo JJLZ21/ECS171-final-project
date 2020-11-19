@@ -15,9 +15,7 @@ First make sure NodeJS is installed and that you can run `npm` from a terminal b
 
 Make sure all of the dependencies are installed by running `npm install` from a terminal in the current "glitch" folder.
 
-Execute `npm start` to start the server where you can then access the site using the url: `http://127.0.0.1:3000/react`
-
-*Note: as of right now, the client is accessed by appending /react at the end of the url. This is subject to change*
+Execute `npm start` to start the server where you can then access the site using the url: `http://127.0.0.1:3000`
 
 -------------------
 
