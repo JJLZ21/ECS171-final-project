@@ -9,7 +9,7 @@ app.use(express.static('public'));
 app.get('/', (req, res) => {
     var dataToSend;
 
-    const pyprocess = spawn('python', ['./test.py']);
+    const pyprocess = spawn('python', ['./model.py']);
 
     // Collect the data from the script
     pyprocess.stdout.on('data', (data) => {
