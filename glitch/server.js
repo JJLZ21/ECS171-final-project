@@ -7,6 +7,10 @@ const port = 3000;
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/react.html');
+});
+
+app.get('/data', (req, res) => {
     var dataToSend;
 
     const pyprocess = spawn('python', ['./model.py']);
@@ -21,10 +25,6 @@ app.get('/', (req, res) => {
         console.log('py process finished with code ' + code);
         res.send(dataToSend);
     });
-});
-
-app.get('/react', (req, res) => {
-    res.sendFile(__dirname + '/public/react.html');
 });
 
 app.get('/run-example', (req, res) => {
