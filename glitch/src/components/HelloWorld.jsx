@@ -36,8 +36,9 @@ class TestRequest extends React.Component {
     // **use json to read data from the server, see the above link
     componentDidMount() {
         di.requestData((data) => {
+            let columns = [...data.keys()];
             this.setState({
-                requestResult: data
+                requestResult: columns[0] + ": " + data.get(columns[0])[0] + ", " + data.get(columns[0])[1]
             });
         });
     }
