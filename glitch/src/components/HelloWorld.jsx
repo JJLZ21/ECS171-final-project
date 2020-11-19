@@ -42,6 +42,7 @@ class TestRequest extends React.Component {
                 requestResult: columns[0] + ": " + data.get(columns[0])[0] + ", " + data.get(columns[0])[1]
             });
         });
+        di.pushData({"testData": 2, "oh data": "eh2"});
     }
 
     // function of what to render onto the DOM

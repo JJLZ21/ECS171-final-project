@@ -1,5 +1,6 @@
 // URL to fetch the data from
-const fetchURL = "./run-example";
+const GET_URL = "./run-example";
+const POST_URL = "./data-set";
 
 // convert json data produced by GET requests into a readable map
 // this is assuming the json format was produced by 'pandas'
@@ -21,7 +22,7 @@ function jsonToMap(jsonData) {
 // with the data converted to a map after it receives data
 module.exports.requestData = function (callback) {
     // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-    fetch(fetchURL).then(res => res.json()).then(
+    fetch(GET_URL).then(res => res.json()).then(
     (result) => {
         // return data to the callback function
         callback(jsonToMap(result));
@@ -33,6 +34,15 @@ module.exports.requestData = function (callback) {
     });
 };
 
-module.exports.pushData = function () {
-    // TODO
+// creates a post request depending on the provided data
+// takes in json data such as: {"NAME": value1, "NAME2": value2}
+// does not 
+module.exports.pushData = function (jsonData) {
+    fetch(POST_URL, {
+        method: "post",
+        body: JSON.stringify(jsonData)
+    }).then((error) => {
+        // log the error
+        console.log(error);
+    });
 };
