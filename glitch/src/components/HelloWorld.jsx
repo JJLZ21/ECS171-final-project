@@ -3,6 +3,8 @@
 const React = require('react');
 const UnorderedList = require('./UnorderedList');
 
+const di = require('./DataInterface');
+
 const dependenciesArray = [
   'express - middleware for the node server',
   'react - for generating the views of the app',
@@ -33,15 +35,9 @@ class TestRequest extends React.Component {
     // change the requestResult to whether it was succesfully received or not
     // **use json to read data from the server, see the above link
     componentDidMount() {
-        fetch("./").then(
-        (result) => {
+        di.requestData((data) => {
             this.setState({
-                requestResult: "Successful request from server!"
-            });
-        },
-        (error) => {
-            this.setState({
-                requestResult: "Error"
+                requestResult: data
             });
         });
     }
