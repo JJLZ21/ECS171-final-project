@@ -16,3 +16,11 @@ q5_test_in = [[1, 0, 0, 0, 0.555372, 0, 0.569690, 0.123167, 0.654471, 0.119489, 
               [0, 1, 0, 1, 0.154762, 0, 0.633596, 0.523674, 0.489632, 0.632587, 0.785415, 0.657841, 0.40, 0.123623, 0.333333]]
 p = model_new.predict(q5_test_in, batch_size=10)
 print('The expected weight class is:', p)
+
+data = {'Test dummy prediction 1': [p[0][0], p[1][0]],
+        'Test dummy prediction 2': ['Second Val', 'Second Val']}
+
+df = pd.DataFrame(
+    data, columns=['Test dummy prediction 1', 'Test dummy prediction 2'])
+
+print(df.to_json())
