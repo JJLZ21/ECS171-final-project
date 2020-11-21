@@ -10,6 +10,10 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/react.html');
 });
 
+app.get('/plotting-test', (req, res) => {
+    res.sendFile(__dirname + '/public/react.html');
+});
+
 app.get('/data', (req, res) => {
     var dataToSend;
 
