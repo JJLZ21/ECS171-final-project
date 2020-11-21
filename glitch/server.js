@@ -11,6 +11,10 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/react.html');
 });
 
+app.get('/results', (req, res) => {
+    res.sendFile(__dirname + '/public/react.html');
+});
+
 let data_set_history = []
 // Post request to receive the one sent in DataInterface.jsx
 app.post('/data-set', (req, res) => {
