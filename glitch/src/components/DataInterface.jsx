@@ -1,18 +1,17 @@
 // URL to fetch the data from
-const GET_URL = "./run-example";
+const GET_URL = "./get-category-result";
 const POST_URL = "./data-set";
 
 // convert json data produced by GET requests into a readable map
-// this is assuming the json format was produced by 'pandas'
 function jsonToMap(jsonData) {
     // convert the received column list into an array
     let columns = Object.keys(jsonData);
     let columnData = new Map();
-
     // use a map to map the columns from the array to their data
     for (let i = 0; i < columns.length; i++) {
         // NOTE: this mapping is assuming that the row indices start at zero
-        columnData.set(columns[i], Object.values(jsonData[columns[0]]));
+        let value = Object.values(jsonData[columns[i]]);
+        columnData.set(columns[i], value == null ? value : jsonData[columns[i]]);
     }
 
     return columnData;
