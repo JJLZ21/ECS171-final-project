@@ -14,6 +14,7 @@ app.get('/plotting-test', (req, res) => {
     res.sendFile(__dirname + '/public/react.html');
 });
 
+let data_set_history = []
 app.get('/data', (req, res) => {
     var dataToSend;
 
@@ -50,6 +51,23 @@ app.get('/run-example', (req, res) => {
         console.log('py process finished with code ' + code);
         res.send(dataToSend);
     });
+});
+
+// Post request to receive the one sent in DataInterface.jsx
+app.post('/data-set', (req, res) => {
+    console.log(req);
+
+    // Assuming that the json sent in a POST request is
+    // contained in the request body
+    let received_json_data = json.loads(req.body);
+
+    // Decide what to do with the data
+    // 1. add to a dataset history for future reference
+    // 2. send the json dataset to the python process that actually
+    //    cares about it (this should be done when run-example or data
+    //    are called
+    let time = new Date().getTime();
+    data_set_history.push({time:received_json_data});
 });
 
 app.listen(port, () => {
