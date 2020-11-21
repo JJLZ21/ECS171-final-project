@@ -40,6 +40,7 @@ module.exports.requestData = function (callback) {
 module.exports.pushData = function (jsonData) {
     fetch(POST_URL, {
         method: "post",
+        headers: {"Content-Type": "application/json"},
         body: JSON.stringify(jsonData)
     }).then((error) => {
         // log the error
