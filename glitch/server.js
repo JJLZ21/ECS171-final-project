@@ -1,5 +1,6 @@
 var express = require("express");
 const spawn = require("child_process").spawn;
+const {streamWrite, streamEnd, onExit} = require('@rauschma/stringio');
 
 var app = express();
 const port = 3000;
@@ -18,7 +19,7 @@ let data_set_history = []
 app.get('/data', (req, res) => {
     var dataToSend;
 
-    const pyprocess = spawn('python', ['./model.py']);
+    const pyprocess = spawn('python', ['./model.py'], {stdio: ['pipe', process.stdout, process.stderr]});
 
     // Collect the data from the script
     pyprocess.stdout.on('data', (data) => {
@@ -32,16 +33,26 @@ app.get('/data', (req, res) => {
     });
 });
 
-app.get('/run-example', (req, res) => {
-    // Run some example python code and send the results as json to the client
-    var dataToSend;
+async function writeInputDataToStdio(handle) {
+    if (data_set_history.length != 0) {
+	console.log("Writing to stdin");
+	// write the most recent data set sent to the server
+	let to_write = data_set_history[data_set_history.length - 1];
 
-    const pyprocess = spawn('python', ['./test.py']);
+	await streamWrite(handle, JSON.stringify(to_write));
+	await streamEnd(handle);
+    }
+}
 
-    // Collect the data from the script
-    // Note: This data should already be in json format!!!
-    // This should be easy to accomplish and is probably better
-    // than trying to jsonify it here before sending it
+async function spawnPyProcess(name, whendone) {
+    const pyprocess = spawn('python', [name]);
+    let dataToSend = '';
+    let time = new Date().toString();
+    data_set_history.push({receivedTime: time, data:'This is a test'});
+
+    console.log(data_set_history);
+    await writeInputDataToStdio(pyprocess.stdin);
+
     pyprocess.stdout.on('data', (data) => {
         dataToSend = data.toString();
         console.log(dataToSend);
@@ -49,7 +60,14 @@ app.get('/run-example', (req, res) => {
 
     pyprocess.on('close', (code) => {
         console.log('py process finished with code ' + code);
-        res.send(dataToSend);
+	whendone(dataToSend)
+    });
+}
+
+app.get('/run-example', (req, res) => {
+    // Run some example python code and send the results as json to the client
+    spawnPyProcess('./test.py', (data) => {
+	res.send(data);
     });
 });
 
@@ -66,7 +84,7 @@ app.post('/data-set', (req, res) => {
     // 2. send the json dataset to the python process that actually
     //    cares about it (this should be done when run-example or data
     //    are called
-    let time = new Date().getTime();
+    let time = new Date().toString();
     data_set_history.push({time:received_json_data});
 });
 
