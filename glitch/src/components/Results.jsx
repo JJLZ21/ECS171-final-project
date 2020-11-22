@@ -60,11 +60,7 @@ class ResultBody extends React.Component {
 }
 
 const ResultComponent = function() {
-    return (
-      <div>
-        <p><ResultBody /></p>
-      </div>
-    );
+    return <ResultBody />;
   }
   
   module.exports = ResultComponent;
