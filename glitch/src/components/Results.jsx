@@ -3,7 +3,7 @@ const React = require('react');
 const di = require('./DataInterface');
 
 // require the categories data json
-const results_data = require('./categories.json')
+const results_data = require('../categories.json')
 
 class ResultBody extends React.Component {
 
