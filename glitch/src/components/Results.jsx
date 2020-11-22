@@ -58,9 +58,5 @@ class ResultBody extends React.Component {
         return "Unknown Category";
     }
 }
-
-const ResultComponent = function() {
-    return <ResultBody />;
-  }
   
-  module.exports = ResultComponent;
+module.exports = ResultBody;
