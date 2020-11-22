@@ -3,5 +3,29 @@
         "category_number": -1,
         "body": ["Hello World!",
                  "This is Line #2!"]
+    },
+    "Category 0": {
+        "category_number": 0,
+        "body": ["Category 0 body"]
+    },
+    "Category 1": {
+        "category_number": 1,
+        "body": ["Category 1 body"]
+    },
+    "Category 2": {
+        "category_number": 2,
+        "body": ["Category 2 body"]
+    },
+    "Category 3": {
+        "category_number": 3,
+        "body": ["Category 3 body"]
+    },
+    "Category 4": {
+        "category_number": 4,
+        "body": ["Category 4 body"]
+    },
+    "Category 5": {
+        "category_number": 5,
+        "body": ["Category 5 body"]
     }
 }
