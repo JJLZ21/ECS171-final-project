@@ -13,5 +13,5 @@ const url = window.location.href;
 const sub = url.slice(url.lastIndexOf("/") + 1);
 switch (sub) {
     case "results": ReactDOM.render(<Results/>, document.getElementById('main')); break;
-    default: ReactDOM.render(<HelloWorld/>, document.getElementById('main'));
+    default: ReactDOM.render(<Questions/>, document.getElementById('main'));
 }
