@@ -1,5 +1,16 @@
 const React = require('react');
 
+// Once we know our actual questions, place them here.
+// If we have less than five questions, remove necessary code.
+// If we have more than five questions, add necessary code.
+const labels = {
+    label1: 'Question 1',
+    label2: 'Question 2',
+    label3: 'Question 3',
+    label4: 'Question 4',
+    label5: 'Question 5'
+}
+
 class FormItem extends React.Component {
     constructor(props) {
         super(props);
@@ -36,25 +47,20 @@ class QuestionsForm extends React.Component {
     }
 
     handleSubmit(event) {
-        console.log('Response submitted:', 
-            this.FormItem1.current.state.value,
-            this.FormItem2.current.state.value,
-            this.FormItem3.current.state.value,
-            this.FormItem4.current.state.value,
-            this.FormItem5.current.state.value
-        );
         event.preventDefault();
+        const responsesJSON = {
+            responses: [
+                this.FormItem1.current.state.value,
+                this.FormItem2.current.state.value,
+                this.FormItem3.current.state.value,
+                this.FormItem4.current.state.value,
+                this.FormItem5.current.state.value
+            ]
+        };
+        console.log(responsesJSON);
     }
 
     render() {
-        const labels = {
-            label1: 'Question 1',
-            label2: 'Question 2',
-            label3: 'Question 3',
-            label4: 'Question 4',
-            label5: 'Question 5'
-        }
-
         return (
             <form onSubmit={this.handleSubmit}>
                 <FormItem myLabel={labels.label1} ref={this.FormItem1} />
