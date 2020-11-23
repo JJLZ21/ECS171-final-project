@@ -1,4 +1,5 @@
 const React = require('react');
+const { pushData } = require('./DataInterface');
 
 // Once we know our actual questions, place them here.
 // If we have less than five questions, remove necessary code.
@@ -58,6 +59,9 @@ class QuestionsForm extends React.Component {
             ]
         };
         console.log(responsesJSON);
+
+        // Send to server (through our DataInterface)
+        pushData(responsesJSON);
     }
 
     render() {
