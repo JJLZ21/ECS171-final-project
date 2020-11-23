@@ -41,8 +41,8 @@ module.exports.pushData = function (jsonData) {
         method: "post",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(jsonData)
-    }).then((error) => {
-        // log the error
-        console.log(error);
+    }).then((res) => {
+        if (res.status != 200)
+            console.log(res);
     });
 };

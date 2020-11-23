@@ -49,6 +49,7 @@ app.post('/data-set', (req, res) => {
     //    a category to be returned
     let time = new Date().toString();
     data_set_history.push({time:received_json_data});
+    res.end();
 });
 
 app.listen(port, () => {
