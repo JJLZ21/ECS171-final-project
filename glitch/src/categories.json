@@ -1,6 +1,7 @@
 {
     "Default": {
         "category_number": -1,
+        "img": "img/placeholder.jpg",
         "body": ["Hello World!",
                  "This is Line #2!"]
     },

@@ -50,7 +50,9 @@ class ResultBody extends React.Component {
                             {results_data[categoryName].body.map(function (str) {
                                 return <div>{str}<br /></div>;
                             })}
-                            <br /><img style={{width: "100%", height: "auto"}} src="img/placeholder.jpg" />
+                            {results_data[categoryName].hasOwnProperty("img") ? 
+                            <div><br /><img style={{width: "100%", height: "auto"}} src={results_data[categoryName].img} /></div>
+                            : null}
                         </div>
                     </div>
                 );
