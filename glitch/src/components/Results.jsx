@@ -3,7 +3,7 @@ const React = require('react');
 const di = require('./DataInterface');
 
 // require the categories data json
-const results_data = require('../categories.json')
+const results_data = require('../categories.json');
 
 class ResultBody extends React.Component {
 
@@ -44,11 +44,14 @@ class ResultBody extends React.Component {
             if (results_data[categoryName].category_number == categoryNumber) {
                 // return the html body for that category according to what is in the json
                 return (
-                    <div>
-                        <h2>{categoryName}</h2>
-                        <p>{results_data[categoryName].body.map(function (str) {
-                            return <div>{str}<br /></div>;
-                        })}</p>
+                    <div style={{margin: "auto", width: "50%"}}>
+                        <br /><h1>{categoryName}</h1>
+                        <div style={{backgroundColor: "rgb(247, 247, 247)", padding: "20px", borderRadius: "5px", boxShadow: "9px 9px 18px -5px rgba(0,0,0,0.2)"}}>
+                            {results_data[categoryName].body.map(function (str) {
+                                return <div>{str}<br /></div>;
+                            })}
+                            <br /><img style={{width: "100%", height: "auto"}} src="img/placeholder.jpg" />
+                        </div>
                     </div>
                 );
             }
