@@ -49,7 +49,11 @@ app.post('/data-set', (req, res) => {
     //    a category to be returned
     let time = new Date().toString();
     data_set_history.push({time:received_json_data});
-    res.end();
+
+    // Redirects the client to the Results page
+    // Assumes that this post request is only called from the Quetsions page
+    // (A pretty safe assumption)
+    res.redirect('./results');
 });
 
 app.listen(port, () => {

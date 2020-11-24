@@ -44,5 +44,8 @@ module.exports.pushData = function (jsonData) {
     }).then((res) => {
         if (res.status != 200)
             console.log(res);
+        else if (res.redirected) {
+            window.location.replace(res.url);
+        }
     });
 };
