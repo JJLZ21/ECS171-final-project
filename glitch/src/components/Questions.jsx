@@ -25,7 +25,7 @@ class FormItem extends React.Component {
         return (
             <label>
                 {this.props.myLabel}
-                <input type='text' value={this.state.value} onChange={this.handleChange} />
+                <input type={this.props.myType} value={this.state.value} onChange={this.handleChange} />
             </label>
         );
     }
@@ -58,9 +58,9 @@ class QuestionsForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <FormItem myLabel={labels.label1} ref={this.FormItem1} />
-                <FormItem myLabel={labels.label2} ref={this.FormItem2} />
-                <FormItem myLabel={labels.label3} ref={this.FormItem3} />
+                <FormItem myLabel={labels.label1} myType='date' ref={this.FormItem1} />
+                <FormItem myLabel={labels.label2} myType='number' ref={this.FormItem2} />
+                <FormItem myLabel={labels.label3} myType='text' ref={this.FormItem3} />
                 <input type='submit' value='Submit' />
             </form>
         );
