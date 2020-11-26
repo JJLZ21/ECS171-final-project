@@ -53,12 +53,13 @@ class ResultBody extends React.Component {
                     <div style={{margin: "auto", width: "50%"}}>
                         <br /><h1>{categoryName}</h1>
                         <div style={{backgroundColor: "rgb(247, 247, 247)", padding: "20px", borderRadius: "5px", boxShadow: "9px 9px 18px -5px rgba(0,0,0,0.2)"}}>
-                            {results_data[categoryName].body.map(function (str) {
+                            {results_data[categoryName].body.map(function (str) { // printing the lines
                                 return <div>{str}<br /></div>;
                             })}
-                            {results_data[categoryName].hasOwnProperty("img") ? 
+                            {results_data[categoryName].hasOwnProperty("img") ?   // printing the image (if exists)
                             <div><br /><img style={{width: "100%", height: "auto"}} src={results_data[categoryName].img} /></div>
                             : null}
+                            <br /><a style={{color: "rgb(138, 122, 144)"}} href="/">Go back</a>
                         </div>
                     </div>
                 );
