@@ -23,10 +23,10 @@ class FormItem extends React.Component {
 
     render() {
         return (
-            <label>
-                <p>{this.props.myLabel}</p>
+            <div style={{marginBottom: '16px'}}>
+                <div style={{marginBottom: '5px'}}>{this.props.myLabel}</div>
                 <input type={this.props.myType} value={this.state.value} onChange={this.handleChange} />
-            </label>
+            </div>
         );
     }
 }
@@ -57,7 +57,7 @@ class QuestionsForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} style={{backgroundColor: "rgb(247, 247, 247)", padding: "20px", borderRadius: "5px", boxShadow: "9px 9px 18px -5px rgba(0,0,0,0.2)"}}>
                 <FormItem myLabel={labels.label1} myType='date' ref={this.FormItem1} />
                 <FormItem myLabel={labels.label2} myType='number' ref={this.FormItem2} />
                 <FormItem myLabel={labels.label3} myType='text' ref={this.FormItem3} />
@@ -69,8 +69,8 @@ class QuestionsForm extends React.Component {
 
 const Questions = function() {
     return(
-        <div>
-            <h1>Questions Page</h1>
+        <div style={{margin: "auto", width: "50%"}}>
+            <br /><h1>Questions Page</h1>
             <QuestionsForm/>
         </div>
     );
