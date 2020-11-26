@@ -24,7 +24,7 @@ class FormItem extends React.Component {
     render() {
         return (
             <label>
-                {this.props.myLabel}
+                <p>{this.props.myLabel}</p>
                 <input type={this.props.myType} value={this.state.value} onChange={this.handleChange} />
             </label>
         );
