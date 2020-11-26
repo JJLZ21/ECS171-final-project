@@ -21,10 +21,16 @@ class ResultBody extends React.Component {
     componentDidMount() {
         // NON BLOCkING
         di.requestData((data) => {
-            let columns = [...data.keys()];
-            this.setState({
-                categoryNumber: data.get(columns[0])
-            });
+            // if error
+            if (data == null) {
+                this.setState({categoryNumber: -2});
+            // if not error
+            } else {
+                let columns = [...data.keys()];
+                this.setState({
+                    categoryNumber: data.get(columns[0])
+                });
+            }
         });
     }
 

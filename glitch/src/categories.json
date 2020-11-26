@@ -1,4 +1,8 @@
 {
+    "Error": {
+        "category_number": -2,
+        "body": ["Error loading result"]
+    },
     "Result Pending": {
         "category_number": -1,
         "body": ["Loading result.."]
