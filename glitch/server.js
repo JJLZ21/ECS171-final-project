@@ -15,8 +15,48 @@ app.get('/results', (req, res) => {
     res.sendFile(__dirname + '/public/react.html');
 });
 
+
+function decideLevelFromFrequency(freq) {
+    if (freq >= 0 && freq <= 25) {
+	return 1;
+    } else if (freq > 25 && freq <= 77) {
+	return 2;
+    } else if (freq > 77) {
+	return 3;
+    } else {
+	return -1;
+    }
+}
+
+function decideLevelFromMonetary(monetary) {
+    if (monetary >= 0 && monetary <= 290.8533) {
+	return 1;
+    } else if (monetary > 290.8533 && monetary <= 1229.34) {
+	return 2;
+    } else if (monetary > 1299.34) {
+	return 3;
+    } else {
+	return -1;
+    }
+}
+
 let data_set_history = []
 function blackBoxCategorizationMagic(input) {
+    // Pull out frequency, monetary scoring an
+    let frequency = input['data']['frequencyIn'];
+    let monetary = input['data']['monetaryIn'];
+    let recency = input['data']['recencyIn'];
+
+    let frequency_level = decideLevelFromFrequency(frequency);
+    let monetary_level = decideLevelFromMonetary(monetary);
+
+    // TODO: Error handling if any return -1
+    // TODO: What are the recency levels
+
+    // TODO: Should the return value be the three
+    // levels added together? Or should I just return
+    // the 3 individual levels?
+
     // Return a random number between one and five
     return Math.floor(Math.random() * 5) + 1;
 }
@@ -48,7 +88,8 @@ app.post('/data-set', (req, res) => {
     // 2. send the dataset into our black box and expect
     //    a category to be returned
     let time = new Date().toString();
-    data_set_history.push({time:received_json_data});
+    data_set_history.push({time:time,
+			   data:received_json_data});
 
     // Redirects the client to the Results page
     // Assumes that this post request is only called from the Quetsions page
