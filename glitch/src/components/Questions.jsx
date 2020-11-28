@@ -9,7 +9,28 @@ const labels = {
     label3: 'How often does this customer make a purchase?'
 }
 
-class FormItem extends React.Component {
+// Options for recency dropdown
+// Subject to change
+const recencyOptions = [
+    {
+        label: 'Pick One',
+        value: -1
+    },
+    {
+        label: 'Recently',
+        value: 3
+    },
+    {
+        label: 'Somewhat recently',
+        value: 2
+    },
+    {
+        label: 'Not very recently',
+        value: 1
+    }
+];
+
+class FormItemInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {value: ''};
@@ -27,6 +48,45 @@ class FormItem extends React.Component {
                 <div style={{marginBottom: '5px'}}>{this.props.myLabel}</div>
                 <input type={this.props.myType} value={this.state.value} onChange={this.handleChange} />
             </div>
+        );
+    }
+}
+
+class FormItemSelect extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {value: ''};
+
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(event) {
+        this.setState({value: event.target.value});
+    }
+    
+    render() {
+        return (
+            <div style={{marginBottom: '16px'}}>
+                <div style={{marginBottom: '5px'}}>{this.props.myLabel}</div>
+                <select value={this.state.value} onChange={this.handleChange}>
+                    <OptionsList options={this.props.options}/>
+                </select>
+            </div>
+        );
+    }
+}
+
+class OptionsList extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const myOptions = this.props.options;
+        return (
+            myOptions.map((option) => 
+                <option value={option.value}>{option.label}</option>
+            )
         );
     }
 }
@@ -58,9 +118,9 @@ class QuestionsForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit} style={{backgroundColor: "rgb(247, 247, 247)", padding: "20px", borderRadius: "5px", boxShadow: "9px 9px 18px -5px rgba(0,0,0,0.2)"}}>
-                <FormItem myLabel={labels.label1} myType='date' ref={this.FormItem1} />
-                <FormItem myLabel={labels.label2} myType='number' ref={this.FormItem2} />
-                <FormItem myLabel={labels.label3} myType='text' ref={this.FormItem3} />
+                <FormItemSelect myLabel={labels.label1} ref={this.FormItem1} options={recencyOptions}/> {/*Recency*/}
+                <FormItemInput myLabel={labels.label2} ref={this.FormItem2} myType='number'/> {/*Monetary*/}
+                <FormItemInput myLabel={labels.label3} ref={this.FormItem3} myType='text'/> {/*Frequency*/}
                 <input type='submit' value='Submit' />
             </form>
         );
