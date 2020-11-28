@@ -17,7 +17,7 @@ const recencyOptions = [
         value: -1
     },
     {
-        label: 'Recently',
+        label: 'Very recently',
         value: 3
     },
     {
