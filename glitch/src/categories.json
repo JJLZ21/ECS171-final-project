@@ -11,7 +11,7 @@
         "category_number": 0,
         "body": ["Category 0 body",
                  "Line 2!",
-                "!img/placeholder.jpg"]
+                 "!img/placeholder.jpg"]
     },
     "Cluster 1": {
         "category_number": 1,
@@ -22,7 +22,8 @@
         "category_number": 2,
         "body": ["Category 2 body",
                  "Line 2!",
-                "!img/placeholder.jpg"]
+                 "!img/placeholder.jpg",
+                 "Line3"]
     },
     "Cluster 3": {
         "category_number": 3,
