@@ -15,7 +15,9 @@ app.get('/results', (req, res) => {
     res.sendFile(__dirname + '/public/react.html');
 });
 
-
+// the ranges for frequency in 3 years: 1: 0-25, 2: 26-77, 3: >77 
+// should we use 1 year instead of 3 years? just divide the range by 3
+// the ranges for frequency in 1 year: 1: 0-8.33, 2: 8.34-25.66, 3: >25.66 
 function decideLevelFromFrequency(freq) {
     if (freq >= 0 && freq <= 25) {
 	return 1;
@@ -28,6 +30,9 @@ function decideLevelFromFrequency(freq) {
     }
 }
 
+// the ranges for Monetary in 3 years: 1: 0-290.8533, 2: 290.8533-1229.34, 3: >1299.34 
+// should we use 1 year instead of 3 years? just divide the range by 3
+// the ranges for frequency in 1 year: 1: 0-96.9511, 2: 96.96-433.11, 3: >433.11
 function decideLevelFromMonetary(monetary) {
     if (monetary >= 0 && monetary <= 290.8533) {
 	return 1;
