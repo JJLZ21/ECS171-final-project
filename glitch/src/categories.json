@@ -9,9 +9,9 @@
     },
     "Cluster 0": {
         "category_number": 0,
-        "img": "img/placeholder.jpg",
         "body": ["Category 0 body",
-                 "Line 2!"]
+                 "Line 2!",
+                "!img/placeholder.jpg"]
     },
     "Cluster 1": {
         "category_number": 1,
@@ -20,9 +20,9 @@
     },
     "Cluster 2": {
         "category_number": 2,
-        "img": "img/placeholder.jpg",
         "body": ["Category 2 body",
-                 "Line 2!"]
+                 "Line 2!",
+                "!img/placeholder.jpg"]
     },
     "Cluster 3": {
         "category_number": 3,
