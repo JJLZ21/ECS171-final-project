@@ -2,6 +2,7 @@
 const GET_URL = "./get-category-result";
 const POST_URL = "./data-set";
 
+// NOTE: remnant from getting returning pandas dataframe from the server
 // convert json data produced by GET requests into a readable map
 function jsonToMap(jsonData) {
     // convert the received column list into an array
@@ -24,7 +25,7 @@ module.exports.requestData = function (callback) {
     fetch(GET_URL).then(res => res.json()).then(
     (result) => {
         // return data to the callback function
-        callback(jsonToMap(result));
+        callback(result);
     },
     (error) => {
         // log the error and callback with null if there was an error

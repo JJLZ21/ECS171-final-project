@@ -12,7 +12,10 @@ class ResultBody extends React.Component {
 
         // set the state to just have the category number
         this.state = {
-            categoryNumber: -1
+            categoryNumber: -1,
+            r_val: 0,
+            f_val: 0,
+            m_val: 0
         };
     }
 
@@ -22,14 +25,15 @@ class ResultBody extends React.Component {
         // NON BLOCkING
         di.requestData((data) => {
             // if error
-            if (data == null) {
-                this.setState({categoryNumber: -2});
-            // if not error
-            } else {
-                let columns = [...data.keys()];
+            try {
                 this.setState({
-                    categoryNumber: data.get(columns[0])
+                    categoryNumber: data.cluster,
+                    r_val: data.R,
+                    f_val: data.F,
+                    m_val: data.M
                 });
+            } catch (error) {  // there was an error setting the state (data is null or any values don't exist)
+                this.setState({categoryNumber: -2});
             }
         });
     }
@@ -37,7 +41,7 @@ class ResultBody extends React.Component {
     // function of what to render onto the DOM
     render() {
         // read in the current state
-        const { categoryNumber } = this.state;
+        const { categoryNumber, r_val, f_val, m_val } = this.state;
 
         // get all of the categories in the json file
         let categories = Object.keys(results_data);
@@ -57,7 +61,8 @@ class ResultBody extends React.Component {
                                 if (str.length > 1 && str.charAt(0) == '!') {
                                     return <div style={{textAlign: "center"}}><img style={{width: "80%", height: "auto"}} src={str.substr(1)} /></div>;
                                 } else {
-                                    return <div>{str}<br /></div>;
+                                    let bodyText = str.replaceAll("{r}", r_val).replaceAll("{f}", f_val).replaceAll("{m}", m_val);
+                                    return <div>{bodyText}<br /></div>;
                                 }
                             })}
                             <br /><a style={{color: "rgb(138, 122, 144)"}} href="/">Go back</a>
