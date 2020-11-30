@@ -4,7 +4,6 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 
 /* Import Components (Pages) */
-const HelloWorld = require('./components/HelloWorld');
 const Questions = require('./components/Questions');
 const Results = require('./components/Results');
 
