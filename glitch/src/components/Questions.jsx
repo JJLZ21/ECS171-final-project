@@ -104,25 +104,38 @@ class QuestionsForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        const responsesJSON = {
-            // Answers to our three questions
-            recencyIn: this.FormItem1.current.state.value,
-            monetaryIn: this.FormItem2.current.state.value,
-            frequencyIn: this.FormItem3.current.state.value,
-        };
 
-        // Send to server (through our DataInterface)
-        pushData(responsesJSON);
+        const r = this.FormItem1.current.state.value;  // Recency
+        const m = this.FormItem2.current.state.value;  // Monetary
+        const f = this.FormItem3.current.state.value;  // Frequency
+        
+        if (r == '' || m == '' || f == '') {
+            let warning = document.getElementById('warning');
+            console.log(warning.innerText);
+            warning.classList.remove('displayNone');
+        }
+        else {
+            const responsesJSON = {
+                // Answers to our three questions
+                recencyIn: r,
+                monetaryIn: m,
+                frequencyIn: f,
+            };
+    
+            // Send to server (through our DataInterface)
+            pushData(responsesJSON);
+        }
     }
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit} style={{backgroundColor: "rgb(247, 247, 247)", padding: "20px", borderRadius: "5px", boxShadow: "9px 9px 18px -5px rgba(0,0,0,0.2)"}}>
+            <div style={{backgroundColor: "rgb(247, 247, 247)", padding: "20px", borderRadius: "5px", boxShadow: "9px 9px 18px -5px rgba(0,0,0,0.2)"}}>
                 <FormItemInput myLabel={labels.label1} ref={this.FormItem1} myType='number'/> {/*Recency*/}
                 <FormItemInput myLabel={labels.label2} ref={this.FormItem2} myType='number'/> {/*Monetary*/}
                 <FormItemInput myLabel={labels.label3} ref={this.FormItem3} myType='number'/> {/*Frequency*/}
-                <input type='submit' value='Submit' />
-            </form>
+                <button type='button' onClick={this.handleSubmit}>Submit</button>
+                <p id='warning' style={{color: 'red', margin: '16px 0 0 0'}} className='displayNone'>All values must be entered</p>
+            </div>
         );
     }
 }
