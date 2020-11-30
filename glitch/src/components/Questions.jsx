@@ -4,9 +4,9 @@ const { pushData } = require('./DataInterface');
 // Questions given by Mary in #se_and_ui-ux channel in Slack
 // Subject to change
 const labels = {
-    label1: 'When was the last time this client shopped at your store?',
-    label2: 'How much has this customer spent in total? (£)',
-    label3: 'How often does this customer make a purchase?'
+    label1: "How many days has it been since this customer's last purchase?",
+    label2: "How much has this customer spent in total? (£)",
+    label3: "How many purchases has this customer made in the past 3 years?"
 }
 
 // Options for recency dropdown
@@ -118,9 +118,9 @@ class QuestionsForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit} style={{backgroundColor: "rgb(247, 247, 247)", padding: "20px", borderRadius: "5px", boxShadow: "9px 9px 18px -5px rgba(0,0,0,0.2)"}}>
-                <FormItemSelect myLabel={labels.label1} ref={this.FormItem1} options={recencyOptions}/> {/*Recency*/}
+                <FormItemInput myLabel={labels.label1} ref={this.FormItem1} myType='number'/> {/*Recency*/}
                 <FormItemInput myLabel={labels.label2} ref={this.FormItem2} myType='number'/> {/*Monetary*/}
-                <FormItemInput myLabel={labels.label3} ref={this.FormItem3} myType='text'/> {/*Frequency*/}
+                <FormItemInput myLabel={labels.label3} ref={this.FormItem3} myType='number'/> {/*Frequency*/}
                 <input type='submit' value='Submit' />
             </form>
         );
