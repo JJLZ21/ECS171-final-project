@@ -52,8 +52,10 @@ function blackBoxCategorizationMagic(input) {
     let monetary = input['data']['monetaryIn'];
     let recency = input['data']['recencyIn'];
 
+    // NOTE: This will all change tommorrow hopefully
     let frequency_level = decideLevelFromFrequency(frequency);
     let monetary_level = decideLevelFromMonetary(monetary);
+    let recency_level = 0;
 
     // TODO: Error handling if any return -1
     // TODO: What are the recency levels
@@ -63,7 +65,8 @@ function blackBoxCategorizationMagic(input) {
     // the 3 individual levels?
 
     // Return a random number between one and five
-    return Math.floor(Math.random() * 5) + 1;
+    let cluster =  Math.floor(Math.random() * 5) + 1;
+    return {cluster: cluster, R: recency_level, F: frequency_level, M: monetary_level};
 }
 
 // Get request that will return as category a person is
@@ -71,9 +74,10 @@ function blackBoxCategorizationMagic(input) {
 // and stored in data_set_history
 app.get('/get-category-result', (req, res) => {
     if (data_set_history.length != 0) {
-	// Use our most recent data set to determine a user's category
-	let category_number = blackBoxCategorizationMagic(data_set_history[data_set_history.length - 1]);
-	res.send({category: category_number});
+	    // Use our most recent data set to determine a user's category
+	    let data = blackBoxCategorizationMagic(data_set_history[data_set_history.length - 1]);
+        console.log("Determined values: " + JSON.stringify(data));
+	    res.send(data);
     } else {
 	// Server did not receive any data from the user so we can't
 	// do anything
