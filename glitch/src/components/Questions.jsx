@@ -1,36 +1,14 @@
 const React = require('react');
 const { pushData } = require('./DataInterface');
 
-// Questions given by Mary in #se_and_ui-ux channel in Slack
-// Subject to change
+// Questions to display
 const labels = {
     label1: "How many days has it been since this customer's last purchase?",
     label2: "How much has this customer spent in total? (£)",
     label3: "How many purchases has this customer made in the past 3 years?"
 }
 
-// Options for recency dropdown
-// Subject to change
-const recencyOptions = [
-    {
-        label: 'Pick One',
-        value: -1
-    },
-    {
-        label: 'Very recently',
-        value: 3
-    },
-    {
-        label: 'Somewhat recently',
-        value: 2
-    },
-    {
-        label: 'Not very recently',
-        value: 1
-    }
-];
-
-class FormItemInput extends React.Component {
+class FormItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {value: ''};
@@ -48,45 +26,6 @@ class FormItemInput extends React.Component {
                 <div style={{marginBottom: '5px'}}>{this.props.myLabel}</div>
                 <input type={this.props.myType} value={this.state.value} onChange={this.handleChange} />
             </div>
-        );
-    }
-}
-
-class FormItemSelect extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {value: ''};
-
-        this.handleChange = this.handleChange.bind(this);
-    }
-
-    handleChange(event) {
-        this.setState({value: event.target.value});
-    }
-    
-    render() {
-        return (
-            <div style={{marginBottom: '16px'}}>
-                <div style={{marginBottom: '5px'}}>{this.props.myLabel}</div>
-                <select value={this.state.value} onChange={this.handleChange}>
-                    <OptionsList options={this.props.options}/>
-                </select>
-            </div>
-        );
-    }
-}
-
-class OptionsList extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        const myOptions = this.props.options;
-        return (
-            myOptions.map((option) => 
-                <option value={option.value}>{option.label}</option>
-            )
         );
     }
 }
@@ -111,7 +50,6 @@ class QuestionsForm extends React.Component {
         
         if (r == '' || m == '' || f == '') {
             let warning = document.getElementById('warning');
-            console.log(warning.innerText);
             warning.classList.remove('displayNone');
         }
         else {
@@ -130,9 +68,9 @@ class QuestionsForm extends React.Component {
     render() {
         return (
             <div style={{backgroundColor: "rgb(247, 247, 247)", padding: "20px", borderRadius: "5px", boxShadow: "9px 9px 18px -5px rgba(0,0,0,0.2)"}}>
-                <FormItemInput myLabel={labels.label1} ref={this.FormItem1} myType='number'/> {/*Recency*/}
-                <FormItemInput myLabel={labels.label2} ref={this.FormItem2} myType='number'/> {/*Monetary*/}
-                <FormItemInput myLabel={labels.label3} ref={this.FormItem3} myType='number'/> {/*Frequency*/}
+                <FormItem myLabel={labels.label1} ref={this.FormItem1} myType='number'/> {/*Recency*/}
+                <FormItem myLabel={labels.label2} ref={this.FormItem2} myType='number'/> {/*Monetary*/}
+                <FormItem myLabel={labels.label3} ref={this.FormItem3} myType='number'/> {/*Frequency*/}
                 <button type='button' onClick={this.handleSubmit}>Submit</button>
                 <p id='warning' style={{color: 'red', margin: '16px 0 0 0'}} className='displayNone'>All values must be entered</p>
             </div>
