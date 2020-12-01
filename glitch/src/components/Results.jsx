@@ -5,6 +5,17 @@ const di = require('./DataInterface');
 // require the categories data json
 const results_data = require('../categories.json');
 
+// From starter-react on Glitch
+const UnorderedList = function({ items }) {
+    return (
+        <ul>
+            {items.map(function(item, i) {
+                return <li key={i}>{item}</li>;
+            })}
+        </ul>
+    );
+}
+
 function getRenderedCategory(categoryName, r_val, f_val, m_val) {
     // return the html body for that category according to what is in the json
     return (
@@ -13,8 +24,13 @@ function getRenderedCategory(categoryName, r_val, f_val, m_val) {
             <div style={{backgroundColor: "rgb(247, 247, 247)", padding: "4px 20px 20px 20px", borderRadius: "5px", boxShadow: "9px 9px 18px -5px rgba(0,0,0,0.2)"}}>
                 {results_data[categoryName].body.map(function (str) { // printing the lines
                     if (str.length > 1 && str.charAt(0) == '!') {
+                        // Image
                         return <div style={{textAlign: "center"}}><img style={{width: "80%", height: "auto"}} src={str.substr(1)} /></div>;
+                    } else if (str.length > 1 && str.charAt(0) == '@') {
+                        // Unordered List
+                        return <UnorderedList items={str.substr(1).split('|')}/>
                     } else {
+                        // Paragraph
                         let bodyText = str.replaceAll("{r}", r_val).replaceAll("{f}", f_val).replaceAll("{m}", m_val);
                         return <p>{bodyText}</p>;
                     }
