@@ -24,7 +24,7 @@ class FormItem extends React.Component {
         return (
             <div style={{marginBottom: '16px'}}>
                 <div style={{marginBottom: '5px'}}>{this.props.myLabel}</div>
-                <input type={this.props.myType} value={this.state.value} onChange={this.handleChange} />
+                <input type={this.props.myType} style={{fontSize: '16px'}} value={this.state.value} onChange={this.handleChange} />
             </div>
         );
     }
@@ -71,7 +71,7 @@ class QuestionsForm extends React.Component {
                 <FormItem myLabel={labels.label1} ref={this.FormItem1} myType='number'/> {/*Recency*/}
                 <FormItem myLabel={labels.label2} ref={this.FormItem2} myType='number'/> {/*Frequency*/}
                 <FormItem myLabel={labels.label3} ref={this.FormItem3} myType='number'/> {/*Monetary*/}
-                <button type='button' onClick={this.handleSubmit}>Submit</button>
+                <button type='button' style={{fontSize: "16px", marginTop: "8px", padding: "5px 8px 5px 8px", backgroundColor: "darkseagreen"}} onClick={this.handleSubmit}>Submit</button>
                 <p id='warning' style={{color: 'red', margin: '16px 0 0 0'}} className='displayNone'>All values must be entered</p>
             </div>
         );
