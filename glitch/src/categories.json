@@ -11,28 +11,36 @@
         "category_number": 0,
         "body": [
             "Your RFM Values: {r} {f} {m}", 
-            "!img/cluster0.png,60"
+            "!img/cluster0.png,60",
+            "Recommendations: ",
+            "@No price incentives needed|New products and bundles|Loyalty programs (credit cards, points and rewards)"
         ]
     },
     "Average Customers on a Financial Budget": {
         "category_number": 1,
         "body": [
             "Your RFM Values: {r} {f} {m}",
-            "!img/cluster1.png,60"
+            "!img/cluster1.png,60",
+            "Recommendations: ",
+            "@Aggressive coupon and price incentives (increase their monetary value)|Point loyalty program where the more frequently they come, the more they can save "
         ]
     },
     "Worst Customers": {
         "category_number": 2,
         "body": [
             "Your RFM Values: {r} {f} {m}",
-            "!img/cluster2.png,60"
+            "!img/cluster2.png,60",
+            "Recommendations: ",
+            "@Don’t spend too much on trying to re-acquire them. Focus on other customer segments."
         ]
     },
     "Seasonal Customers (Not on a budget)": {
         "category_number": 3,
         "body": [
             "Your RFM Values: {r} {f} {m}",
-            "!img/cluster3.png,60"
+            "!img/cluster3.png,60",
+            "Recommendations: ",
+            "@Give them the incentive to come back soon with limited time offers|Don’t need aggressive price incentives"
         ]
     }
 }
