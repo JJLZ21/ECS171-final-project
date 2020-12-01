@@ -19,7 +19,7 @@ const UnorderedList = function({ items }) {
 function getRenderedCategory(categoryName, r_val, f_val, m_val) {
     // return the html body for that category according to what is in the json
     return (
-        <div style={{margin: "auto", width: "50%"}}>
+        <div className='content'>
             <br /><h1>{categoryName}</h1>
             <div style={{backgroundColor: "rgb(247, 247, 247)", padding: "4px 20px 20px 20px", borderRadius: "5px", boxShadow: "9px 9px 18px -5px rgba(0,0,0,0.2)"}}>
                 {results_data[categoryName].body.map(function (str) { // printing the lines

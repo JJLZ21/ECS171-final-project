@@ -80,7 +80,7 @@ class QuestionsForm extends React.Component {
 
 const Questions = function() {
     return(
-        <div style={{margin: "auto", width: "50%"}}>
+        <div className='content'>
             <br /><h1>Questions Page</h1>
             <QuestionsForm/>
         </div>

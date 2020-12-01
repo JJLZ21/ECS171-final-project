@@ -5,3 +5,8 @@ body {
 .displayNone {
    display: none;
 }
+
+.content {
+   margin: auto;
+   width: min(800px, 80%);
+}
