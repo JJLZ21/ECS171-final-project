@@ -99,18 +99,18 @@ function blackBoxCategorizationMagic(input) {
     let recency = input['data']['recencyIn'];
 
     // Calculate the z-scores for each category/cluster
-    let c0 = categoryZeroAnalysis(frequency, monetary, recency);
-    let c1 = categoryOneAnalysis(frequency, monetary, recency);
-    let c2 = categoryTwoAnalysis(frequency, monetary, recency);
-    let c3 = categoryThreeAnalysis(frequency, monetary, recency);
+    const zscores = [categoryZeroAnalysis(frequency, monetary, recency),
+                     categoryOneAnalysis(frequency, monetary, recency),
+                     categoryTwoAnalysis(frequency, monetary, recency),
+                     categoryThreeAnalysis(frequency, monetary, recency)];
 
     // Determine which zscores are closest to zero.
     // The closest array of zscores will be the one that
     // we should recommend
-    let d0 = distanceFromZero(c0);
-    let d1 = distanceFromZero(c1);
-    let d2 = distanceFromZero(c2);
-    let d3 = distanceFromZero(c3);
+    const zscores_summed = [distanceFromZero(zscores[0]),
+                            distanceFromZero(zscores[1]),
+                            distanceFromZero(zscores[2]),
+                            distanceFromZero(zscores[3])];
 
     // The summed absolute value of zscores should be good
     // to determine which cluster is the best fit for our
@@ -125,24 +125,13 @@ function blackBoxCategorizationMagic(input) {
     // Because of the summed calculation of zscores, all three
     // zscores need to be relatively small for our input data
     // to actually be categorized as a particular cluster
-
-    let zscores = [c0, c1, c2, c3];
-    let zscore_values = [d0, d1, d2, d3];
-    let min = Math.min.apply(Math, zscore_values); 
-    let determined_cluster = zscore_values.indexOf(min);
+    const min = Math.min.apply(Math, zscores_summed); 
+    const determined_cluster = zscores_summed.indexOf(min);
     
-    console.log(c0);
-    console.log(c1);
-    console.log(c2);
-    console.log(c3);
-
-    console.log(d0);
-    console.log(d1);
-    console.log(d2);
-    console.log(d3);
-
-    console.log(min);
-    console.log(determined_cluster);
+    console.log("Z-Scores: " + JSON.stringify(zscores));
+    console.log("Z-Scores Summed: " + JSON.stringify(zscores_summed));
+    console.log("Determined Minimum: " + min);
+    console.log("Determined Cluster: " + determined_cluster);
 
     return {cluster: determined_cluster,
             R: recency,
