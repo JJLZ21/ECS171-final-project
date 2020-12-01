@@ -37,7 +37,7 @@
             "@Do not spend too much on trying to re-acquire them. Focus on other customer segments."
         ]
     },
-    "Seasonal Customers (Not on a budget)": {
+    "Spendy Seasonal Customers": {
         "category_number": 3,
         "body": [
             "This customer's RFM Values: ({r}, {f}, {m})",
