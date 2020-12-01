@@ -15,58 +15,131 @@ app.get('/results', (req, res) => {
     res.sendFile(__dirname + '/public/react.html');
 });
 
-// the ranges for frequency in 3 years: 1: 0-25, 2: 26-77, 3: >77 
-// should we use 1 year instead of 3 years? just divide the range by 3
-// the ranges for frequency in 1 year: 1: 0-8.33, 2: 8.34-25.66, 3: >25.66 
-function decideLevelFromFrequency(freq) {
-    if (freq >= 0 && freq <= 25) {
-	return 1;
-    } else if (freq > 25 && freq <= 77) {
-	return 2;
-    } else if (freq > 77) {
-	return 3;
-    } else {
-	return -1;
-    }
+
+function distFromMean(input, mean, std) {
+    const Z = (input - mean) / std;
+    return Z;
 }
 
-// the ranges for Monetary in 3 years: 1: 0-290.8533, 2: 290.8533-1229.34, 3: >1299.34 
-// should we use 1 year instead of 3 years? just divide the range by 3
-// the ranges for frequency in 1 year: 1: 0-96.9511, 2: 96.96-433.11, 3: >433.11
-function decideLevelFromMonetary(monetary) {
-    if (monetary >= 0 && monetary <= 290.8533) {
-	return 1;
-    } else if (monetary > 290.8533 && monetary <= 1229.34) {
-	return 2;
-    } else if (monetary > 1299.34) {
-	return 3;
-    } else {
-	return -1;
-    }
+function categoryZeroAnalysis(frequency, monetary, recency) {
+    const mean_r = 17.23;
+    const mean_f = 213.11;
+    const mean_m = 4435.33;
+
+    const std_r = 14.011974;
+    const std_f = 288.561883;
+    const std_m = 12952.823168;
+
+    const zr = distFromMean(recency, mean_r, std_r);
+    const zf = distFromMean(frequency, mean_f, std_f);
+    const zm = distFromMean(monetary, mean_m, std_m);
+
+    return [zf, zm, zr];
+}
+
+function categoryOneAnalysis(frequency, monetary, recency) {
+    const mean_r = 24.34;
+    const mean_f = 29.92;
+    const mean_m = 497.39;
+
+    const std_r = 14.168621;
+    const std_f = 22.185703;
+    const std_m = 440.082541;
+
+    const zr = distFromMean(recency, mean_r, std_r);
+    const zf = distFromMean(frequency, mean_f, std_f);
+    const zm = distFromMean(monetary, mean_m, std_m);
+
+    return [zf, zm, zr];
+}
+
+function categoryTwoAnalysis(frequency, monetary, recency) {
+    const mean_r = 185.89;
+    const mean_f = 18.70;
+    const mean_m = 300.99;
+
+    const std_r = 97.394688;
+    const std_f = 13.746029;
+    const std_m = 206.843209;
+
+    const zr = distFromMean(recency, mean_r, std_r);
+    const zf = distFromMean(frequency, mean_f, std_f);
+    const zm = distFromMean(monetary, mean_m, std_m);
+
+    return [zf, zm, zr];
+}
+
+function categoryThreeAnalysis(frequency, monetary, recency ) {
+    const mean_r = 118.59;
+    const mean_f = 94.41;
+    const mean_m = 1770.96;
+
+    const std_r = 70.645585;
+    const std_f = 93.843974;
+    const std_m = 2053.940432;
+
+    const zr = distFromMean(recency, mean_r, std_r);
+    const zf = distFromMean(frequency, mean_f, std_f);
+    const zm = distFromMean(monetary, mean_m, std_m);
+
+    return [zf, zm, zr];
+}
+
+function distanceFromZero(scores) {
+    return Math.abs(scores[0]) + Math.abs(scores[1]) + Math.abs(scores[2]);
 }
 
 let data_set_history = []
-function blackBoxCategorizationMagic(input) {
+function determineCluster(input) {
     // Pull out frequency, monetary scoring an
-    let frequency = input['data']['frequencyIn'];
-    let monetary = input['data']['monetaryIn'];
-    let recency = input['data']['recencyIn'];
+    const frequency = input['data']['frequencyIn'];
+    const monetary = input['data']['monetaryIn'];
+    const recency = input['data']['recencyIn'];
 
-    // NOTE: This will all change tommorrow hopefully
-    let frequency_level = decideLevelFromFrequency(frequency);
-    let monetary_level = decideLevelFromMonetary(monetary);
-    let recency_level = 0;
+    // Calculate the z-scores for each category/cluster
+    // NOTE: The array indexes indicate the cluster number
+    // i.e. index 0 is cluster zero, index 1 is cluster one, etc.
+    const zscores = [categoryZeroAnalysis(frequency, monetary, recency),
+                     categoryOneAnalysis(frequency, monetary, recency),
+                     categoryTwoAnalysis(frequency, monetary, recency),
+                     categoryThreeAnalysis(frequency, monetary, recency)];
 
-    // TODO: Error handling if any return -1
-    // TODO: What are the recency levels
+    // Determine which zscores are closest to zero.
+    // The closest array of zscores will be the one that
+    // we should recommend
+    const zscores_summed = [distanceFromZero(zscores[0]),
+                            distanceFromZero(zscores[1]),
+                            distanceFromZero(zscores[2]),
+                            distanceFromZero(zscores[3])];
 
-    // TODO: Should the return value be the three
-    // levels added together? Or should I just return
-    // the 3 individual levels?
+    // The summed absolute value of zscores should be good
+    // to determine which cluster is the best fit for our
+    // input data. 
+    //
+    // EXAMPLE:
+    // For a particular cluster for recency and monetary are
+    // VERY low, but the frequency zscore could be VERY high,
+    // making it hard to actually categorize our input data
+    // as that cluster
+    //
+    // Because of the summed calculation of zscores, all three
+    // zscores need to be relatively small for our input data
+    // to actually be categorized as a particular cluster
+    const min = Math.min.apply(Math, zscores_summed); 
+    const determined_cluster = zscores_summed.indexOf(min);
+    
+    console.log("Z-Scores: " + JSON.stringify(zscores));
+    console.log("Z-Scores Summed: " + JSON.stringify(zscores_summed));
+    console.log("Determined Minimum: " + min);
+    console.log("Determined Cluster: " + determined_cluster);
 
-    // Return a random number between one and five
-    let cluster =  Math.floor(Math.random() * 5) + 1;
-    return {cluster: cluster, R: recency_level, F: frequency_level, M: monetary_level};
+    return {cluster: determined_cluster,
+            R: recency,
+            F: frequency,
+            M: monetary,
+            zscore_r: zscores[determined_cluster][2],
+            zscore_f: zscores[determined_cluster][0],
+            zscore_m: zscores[determined_cluster][1]};
 }
 
 // Get request that will return as category a person is
@@ -75,7 +148,7 @@ function blackBoxCategorizationMagic(input) {
 app.get('/get-category-result', (req, res) => {
     if (data_set_history.length != 0) {
 	    // Use our most recent data set to determine a user's category
-	    let data = blackBoxCategorizationMagic(data_set_history[data_set_history.length - 1]);
+	    let data = determineCluster(data_set_history[data_set_history.length - 1]);
         console.log("Determined values: " + JSON.stringify(data));
 	    res.send(data);
     } else {
