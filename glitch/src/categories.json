@@ -7,28 +7,28 @@
         "category_number": -1,
         "body": ["Loading result.."]
     },
-    "Cluster 0": {
+    "Best Customers": {
         "category_number": 0,
         "body": [
             "Your RFM Values: {r} {f} {m}", 
             "!img/cluster0.png,40"
         ]
     },
-    "Cluster 1": {
+    "Average Customers on a Financial Budget": {
         "category_number": 1,
         "body": [
             "Your RFM Values: {r} {f} {m}",
             "!img/cluster1.png,40"
         ]
     },
-    "Cluster 2": {
+    "Worst Customers": {
         "category_number": 2,
         "body": [
             "Your RFM Values: {r} {f} {m}",
             "!img/cluster2.png,40"
         ]
     },
-    "Cluster 3": {
+    "Seasonal Customers (Not on a budget)": {
         "category_number": 3,
         "body": [
             "Your RFM Values: {r} {f} {m}",
