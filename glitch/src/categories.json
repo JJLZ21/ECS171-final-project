@@ -11,35 +11,28 @@
         "category_number": 0,
         "body": [
             "Your RFM Values: {r} {f} {m}", 
-            "Category 0 body",
-            "Line 2!",
-            "!img/placeholder.jpg"
+            "!img/cluster0.png,40"
         ]
     },
     "Cluster 1": {
         "category_number": 1,
         "body": [
             "Your RFM Values: {r} {f} {m}",
-            "Category 1 body",
-            "Line 2!"
+            "!img/cluster1.png,40"
         ]
     },
     "Cluster 2": {
         "category_number": 2,
         "body": [
             "Your RFM Values: {r} {f} {m}",
-            "Category 2 body",
-            "Line 2!",
-            "!img/placeholder.jpg",
-            "Line3"
+            "!img/cluster2.png,40"
         ]
     },
     "Cluster 3": {
         "category_number": 3,
         "body": [
             "Your RFM Values: {r} {f} {m}",
-            "Category 3 body",
-            "Line 2!"
+            "!img/cluster3.png,40"
         ]
     }
 }

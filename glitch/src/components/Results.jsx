@@ -25,7 +25,12 @@ function getRenderedCategory(categoryName, r_val, f_val, m_val) {
                 {results_data[categoryName].body.map(function (str) { // printing the lines
                     if (str.length > 1 && str.charAt(0) == '!') {
                         // Image
-                        return <div style={{textAlign: "center"}}><img style={{width: "80%", height: "auto"}} src={str.substr(1)} /></div>;
+                        let delim = str.indexOf(",");
+                        if (delim == -1) {
+                            return <div style={{textAlign: "center"}}><img style={{width: "80%", height: "auto"}} src={str.substr(1)} /></div>;
+                        } else {
+                            return <div style={{textAlign: "center"}}><img style={{width: str.substr(delim + 1) + "%", height: "auto"}} src={str.substr(1, delim - 1)} /></div>;
+                        }
                     } else if (str.length > 1 && str.charAt(0) == '@') {
                         // Unordered List
                         return <UnorderedList items={str.substr(1).split('|')}/>
