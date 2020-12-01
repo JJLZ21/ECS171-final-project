@@ -17,7 +17,7 @@ app.get('/results', (req, res) => {
 
 
 function distFromMean(input, mean, std) {
-    let Z = (input - mean) / std;
+    const Z = (input - mean) / std;
     return Z;
 }
 
@@ -90,13 +90,15 @@ function distanceFromZero(scores) {
 }
 
 let data_set_history = []
-function blackBoxCategorizationMagic(input) {
+function determineCluster(input) {
     // Pull out frequency, monetary scoring an
-    let frequency = input['data']['frequencyIn'];
-    let monetary = input['data']['monetaryIn'];
-    let recency = input['data']['recencyIn'];
+    const frequency = input['data']['frequencyIn'];
+    const monetary = input['data']['monetaryIn'];
+    const recency = input['data']['recencyIn'];
 
     // Calculate the z-scores for each category/cluster
+    // NOTE: The array indexes indicate the cluster number
+    // i.e. index 0 is cluster zero, index 1 is cluster one, etc.
     const zscores = [categoryZeroAnalysis(frequency, monetary, recency),
                      categoryOneAnalysis(frequency, monetary, recency),
                      categoryTwoAnalysis(frequency, monetary, recency),
@@ -146,7 +148,7 @@ function blackBoxCategorizationMagic(input) {
 app.get('/get-category-result', (req, res) => {
     if (data_set_history.length != 0) {
 	    // Use our most recent data set to determine a user's category
-	    let data = blackBoxCategorizationMagic(data_set_history[data_set_history.length - 1]);
+	    let data = determineCluster(data_set_history[data_set_history.length - 1]);
         console.log("Determined values: " + JSON.stringify(data));
 	    res.send(data);
     } else {
