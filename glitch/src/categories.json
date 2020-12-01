@@ -11,28 +11,28 @@
         "category_number": 0,
         "body": [
             "Your RFM Values: {r} {f} {m}", 
-            "!img/cluster0.png,40"
+            "!img/cluster0.png,60"
         ]
     },
     "Average Customers on a Financial Budget": {
         "category_number": 1,
         "body": [
             "Your RFM Values: {r} {f} {m}",
-            "!img/cluster1.png,40"
+            "!img/cluster1.png,60"
         ]
     },
     "Worst Customers": {
         "category_number": 2,
         "body": [
             "Your RFM Values: {r} {f} {m}",
-            "!img/cluster2.png,40"
+            "!img/cluster2.png,60"
         ]
     },
     "Seasonal Customers (Not on a budget)": {
         "category_number": 3,
         "body": [
             "Your RFM Values: {r} {f} {m}",
-            "!img/cluster3.png,40"
+            "!img/cluster3.png,60"
         ]
     }
 }
