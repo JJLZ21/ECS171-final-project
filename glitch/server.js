@@ -1,3 +1,5 @@
+// ********** SETUP **********
+
 var express = require("express");
 var bodyParser = require('body-parser')
 
@@ -7,14 +9,8 @@ const port = 3000;
 app.use(express.static('public'));
 app.use(bodyParser.json()); 
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/react.html');
-});
 
-app.get('/results', (req, res) => {
-    res.sendFile(__dirname + '/public/react.html');
-});
-
+// ********** CLUSTERING FUNCTIONS **********
 
 function distFromMean(input, mean, std) {
     const Z = (input - mean) / std;
@@ -142,6 +138,17 @@ function determineCluster(input) {
             zscore_m: zscores[determined_cluster][1]};
 }
 
+
+// ********** CLIENT/SERVER COMMUNICATION **********
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/react.html');
+});
+
+app.get('/results', (req, res) => {
+    res.sendFile(__dirname + '/public/react.html');
+});
+
 // Get request that will return as category a person is
 // in based on their input data that was sent from /data-set
 // and stored in data_set_history
@@ -156,7 +163,7 @@ app.get('/get-category-result', (req, res) => {
 	// do anything
 	res.send({category: -1});
     }
-})
+});
 
 // Post request to receive the one sent in DataInterface.jsx
 app.post('/data-set', (req, res) => {
