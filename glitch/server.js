@@ -111,6 +111,25 @@ function blackBoxCategorizationMagic(input) {
     let d1 = distanceFromZero(c1);
     let d2 = distanceFromZero(c2);
     let d3 = distanceFromZero(c3);
+
+    // The summed absolute value of zscores should be good
+    // to determine which cluster is the best fit for our
+    // input data. 
+    //
+    // EXAMPLE:
+    // For a particular cluster for recency and monetary are
+    // VERY low, but the frequency zscore could be VERY high,
+    // making it hard to actually categorize our input data
+    // as that cluster
+    //
+    // Because of the summed calculation of zscores, all three
+    // zscores need to be relatively small for our input data
+    // to actually be categorized as a particular cluster
+
+    let zscores = [c0, c1, c2, c3];
+    let zscore_values = [d0, d1, d2, d3];
+    let min = Math.min.apply(Math, zscore_values); 
+    let determined_cluster = zscore_values.indexOf(min);
     
     console.log(c0);
     console.log(c1);
@@ -122,11 +141,16 @@ function blackBoxCategorizationMagic(input) {
     console.log(d2);
     console.log(d3);
 
-    let recency_level = 0;
-    let frequency_level = 0;
-    let monetary_level = 0;
-    let cluster =  Math.floor(Math.random() * 5) + 1;
-    return {cluster: cluster, R: recency_level, F: frequency_level, M: monetary_level};
+    console.log(min);
+    console.log(determined_cluster);
+
+    return {cluster: determined_cluster,
+            R: recency,
+            F: frequency,
+            M: monetary,
+            zscore_r: zscores[determined_cluster][2],
+            zscore_f: zscores[determined_cluster][0],
+            zscore_m: zscores[determined_cluster][1]};
 }
 
 // Get request that will return as category a person is
