@@ -87,6 +87,10 @@ function categoryThreeAnalysis(frequency, monetary, recency ) {
     return [zf, zm, zr];
 }
 
+function distanceFromZero(scores) {
+    return Math.abs(scores[0]) + Math.abs(scores[1]) + Math.abs(scores[2]);
+}
+
 let data_set_history = []
 function blackBoxCategorizationMagic(input) {
     // Pull out frequency, monetary scoring an
@@ -94,15 +98,29 @@ function blackBoxCategorizationMagic(input) {
     let monetary = input['data']['monetaryIn'];
     let recency = input['data']['recencyIn'];
 
+    // Calculate the z-scores for each category/cluster
     let c0 = categoryZeroAnalysis(frequency, monetary, recency);
     let c1 = categoryOneAnalysis(frequency, monetary, recency);
     let c2 = categoryTwoAnalysis(frequency, monetary, recency);
     let c3 = categoryThreeAnalysis(frequency, monetary, recency);
 
+    // Determine which zscores are closest to zero.
+    // The closest array of zscores will be the one that
+    // we should recommend
+    let d0 = distanceFromZero(c0);
+    let d1 = distanceFromZero(c1);
+    let d2 = distanceFromZero(c2);
+    let d3 = distanceFromZero(c3);
+    
     console.log(c0);
     console.log(c1);
     console.log(c2);
     console.log(c3);
+
+    console.log(d0);
+    console.log(d1);
+    console.log(d2);
+    console.log(d3);
 
     let recency_level = 0;
     let frequency_level = 0;
