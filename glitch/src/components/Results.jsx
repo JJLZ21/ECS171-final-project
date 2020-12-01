@@ -5,6 +5,26 @@ const di = require('./DataInterface');
 // require the categories data json
 const results_data = require('../categories.json');
 
+function getRenderedCategory(categoryName, r_val, f_val, m_val) {
+    // return the html body for that category according to what is in the json
+    return (
+        <div style={{margin: "auto", width: "50%"}}>
+            <br /><h1>{categoryName}</h1>
+            <div style={{backgroundColor: "rgb(247, 247, 247)", padding: "20px", borderRadius: "5px", boxShadow: "9px 9px 18px -5px rgba(0,0,0,0.2)"}}>
+                {results_data[categoryName].body.map(function (str) { // printing the lines
+                    if (str.length > 1 && str.charAt(0) == '!') {
+                        return <div style={{textAlign: "center"}}><img style={{width: "80%", height: "auto"}} src={str.substr(1)} /></div>;
+                    } else {
+                        let bodyText = str.replaceAll("{r}", r_val).replaceAll("{f}", f_val).replaceAll("{m}", m_val);
+                        return <div>{bodyText}<br /></div>;
+                    }
+                })}
+                <br /><a style={{color: "rgb(138, 122, 144)"}} href="/">Go back</a>
+            </div>
+        </div>
+    );
+}
+
 class ResultBody extends React.Component {
 
     constructor(props) {
@@ -52,28 +72,12 @@ class ResultBody extends React.Component {
 
             // if the category_number matches the current state
             if (results_data[categoryName].category_number == categoryNumber) {
-                // return the html body for that category according to what is in the json
-                return (
-                    <div style={{margin: "auto", width: "50%"}}>
-                        <br /><h1>{categoryName}</h1>
-                        <div style={{backgroundColor: "rgb(247, 247, 247)", padding: "20px", borderRadius: "5px", boxShadow: "9px 9px 18px -5px rgba(0,0,0,0.2)"}}>
-                            {results_data[categoryName].body.map(function (str) { // printing the lines
-                                if (str.length > 1 && str.charAt(0) == '!') {
-                                    return <div style={{textAlign: "center"}}><img style={{width: "80%", height: "auto"}} src={str.substr(1)} /></div>;
-                                } else {
-                                    let bodyText = str.replaceAll("{r}", r_val).replaceAll("{f}", f_val).replaceAll("{m}", m_val);
-                                    return <div>{bodyText}<br /></div>;
-                                }
-                            })}
-                            <br /><a style={{color: "rgb(138, 122, 144)"}} href="/">Go back</a>
-                        </div>
-                    </div>
-                );
+                return getRenderedCategory(categoryName, r_val, f_val, m_val);
             }
         }
 
-        // there was no known categories in the json file
-        return "Unknown Category";
+        // there was no known categories in the json file, return the error category if it exists
+        return results_data.hasOwnProperty("Error") ? getRenderedCategory("Error", -1, -1, -1) : "Unknown category";
     }
 }
   
