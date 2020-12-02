@@ -10,37 +10,41 @@
     "Best Customers": {
         "category_number": 0,
         "body": [
-            "Your RFM Values: {r} {f} {m}", 
-            "!img/cluster0.png,60",
+            "This customer's RFM Values: ({r}, {f}, {m})", 
+            "This customer is among our best. Customers like this are generally our highest spenders and our most frequent shoppers. Because these customers shop frequently, they are also the most likely to be among our most recent customers. The best way to reach these customers is to give them more of what they already love.",
+            "!img/cluster0_new.png,60",
             "Recommendations: ",
-            "@No price incentives needed|New products and bundles|Loyalty programs (credit cards, points and rewards)"
+            "@No price incentives needed|Loyalty programs (points and rewards, credit cards)|Bundles and new products"
         ]
     },
     "Average Customers on a Financial Budget": {
         "category_number": 1,
         "body": [
-            "Your RFM Values: {r} {f} {m}",
-            "!img/cluster1.png,60",
+            "This customer's RFM Values: ({r}, {f}, {m})",
+            "This customer is an average customer on a financial budget. Customers like this usually have made a purchase from our store in the past 60 days, but their purchases are infrequent and they generally do not spend much. These customers do not seem to be committed to our store. This customer may also be relatively new to our store.",
+            "!img/cluster1_new.png,60",
             "Recommendations: ",
-            "@Aggressive coupon and price incentives (increase their monetary value)|Point loyalty program where the more frequently they come, the more they can save "
+            "@Coupons and aggressive price incentives to fit a tighter budget|Loyalty programs (points and rewards)"
         ]
     },
     "Worst Customers": {
         "category_number": 2,
         "body": [
-            "Your RFM Values: {r} {f} {m}",
-            "!img/cluster2.png,60",
+            "This customer's RFM Values: ({r}, {f}, {m})",
+            "This is an example of what is called a \"lost customer\". Customers like this are generally our lowest spenders and our least frequent buyers, and on average is has been six months since their last purchase.",
+            "!img/cluster2_new.png,60",
             "Recommendations: ",
-            "@Don’t spend too much on trying to re-acquire them. Focus on other customer segments."
+            "@Do not spend too much on trying to re-acquire them. Focus on other customer segments."
         ]
     },
-    "Seasonal Customers (Not on a budget)": {
+    "Spendy Seasonal Customers": {
         "category_number": 3,
         "body": [
-            "Your RFM Values: {r} {f} {m}",
-            "!img/cluster3.png,60",
+            "This customer's RFM Values: ({r}, {f}, {m})",
+            "Customers like this one are seasonal shoppers. They have made more purchases and spent more money than the majority of our customers, but they have not made a purchase in a while. These customers are likely the most active during the holiday season.",
+            "!img/cluster3_new.png,60",
             "Recommendations: ",
-            "@Give them the incentive to come back soon with limited time offers|Don’t need aggressive price incentives"
+            "@No aggressive price incentives needed|Use limited time offers to encourage them to come back soon"
         ]
     }
 }
