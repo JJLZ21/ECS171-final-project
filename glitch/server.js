@@ -18,13 +18,13 @@ function distFromMean(input, mean, std) {
 }
 
 function categoryZeroAnalysis(frequency, monetary, recency) {
-    const mean_r = 17.23;
-    const mean_f = 213.11;
-    const mean_m = 4435.33;
+    const mean_r = 14.702544;
+    const mean_f = 235.156556;
+    const mean_m = 4964.604020;
 
-    const std_r = 14.011974;
-    const std_f = 288.561883;
-    const std_m = 12952.823168;
+    const std_r = 12.832362;
+    const std_f = 304.915722;
+    const std_m = 13877.918795;
 
     const zr = distFromMean(recency, mean_r, std_r);
     const zf = distFromMean(frequency, mean_f, std_f);
@@ -34,9 +34,9 @@ function categoryZeroAnalysis(frequency, monetary, recency) {
 }
 
 function categoryOneAnalysis(frequency, monetary, recency) {
-    const mean_r = 24.34;
-    const mean_f = 29.92;
-    const mean_m = 497.39;
+    const mean_r = 24.342105;
+    const mean_f = 29.918546;
+    const mean_m = 497.385001;
 
     const std_r = 14.168621;
     const std_f = 22.185703;
@@ -50,9 +50,9 @@ function categoryOneAnalysis(frequency, monetary, recency) {
 }
 
 function categoryTwoAnalysis(frequency, monetary, recency) {
-    const mean_r = 185.89;
-    const mean_f = 18.70;
-    const mean_m = 300.99;
+    const mean_r = 185.894650;
+    const mean_f = 18.695473;
+    const mean_m = 300.994051;
 
     const std_r = 97.394688;
     const std_f = 13.746029;
@@ -66,13 +66,13 @@ function categoryTwoAnalysis(frequency, monetary, recency) {
 }
 
 function categoryThreeAnalysis(frequency, monetary, recency ) {
-    const mean_r = 118.59;
-    const mean_f = 94.41;
-    const mean_m = 1770.96;
+    const mean_r = 103.312636;
+    const mean_f = 91.077342;
+    const mean_m = 1657.715819;
 
-    const std_r = 70.645585;
-    const std_f = 93.843974;
-    const std_m = 2053.940432;
+    const std_r = 72.055165;
+    const std_f = 86.325331;
+    const std_m = 1906.586092;
 
     const zr = distFromMean(recency, mean_r, std_r);
     const zf = distFromMean(frequency, mean_f, std_f);
