@@ -40,7 +40,9 @@ function getRenderedCategory(categoryName, r_val, f_val, m_val) {
                         return <p>{bodyText}</p>;
                     }
                 })}
-                <br /><a style={{color: "rgb(138, 122, 144)"}} href="/">Go back</a>
+                <a href="/">
+                    <button style={{fontSize: "16px", marginTop: "8px", padding: "5px 8px 5px 8px"}}>Go back</button>
+                </a>
             </div>
         </div>
     );
