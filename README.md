@@ -37,10 +37,10 @@ Web Interface Files:
   - **webpack.config.js** is the configuration for webpack that compiles everything in src/ into a bundle.js in public/
 
 Machine Learning Files: 
-  - ml_file.ipynb is the primary source code for the data and machine analysis of the project 
-  - unscaled_ml_file.ipynb applies some clustering analysis on unscaled data for testing purposes 
+  - **ml_file.ipynb** is the primary source code for the data and machine analysis of the project 
+  - **unscaled_ml_file.ipynb** applies some clustering analysis on unscaled data for testing purposes 
 
 Data Set files: 
-  - online_retail_II.xlsx this the raw dataset coming from the UCI machine learning repository 
-  - processed_dataset_11-18.zip this is our dataset after pre-processing efforts
+  - **online_retail_II.xlsx** this the raw dataset coming from the UCI machine learning repository 
+  - **processed_dataset_11-18.zip** this is our dataset after pre-processing efforts
   
