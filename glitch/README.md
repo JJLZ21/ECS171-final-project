@@ -1,15 +1,10 @@
-## Importing to Glitch
+# Web Interface
 
-Make sure the files in master/main are up to date and use:
+Try it now: https://ecs-171-strite-pie-licoriceta.glitch.me/
 
-`Tools -> Import and Export -> Import from Github`
+Our web interface is hosted on Glitch, a platform that allows users to build and host fast, full-stack web apps in-browser for free.
 
-Use URL: `JJLZ21/ECS171-final-project:glitch`
-
-*Note: this copies the changes that are currently available in the main branch*
-
-
-## Running locally
+## How to run the web interface on your local machine
 
 First make sure NodeJS is installed and that you can run `npm` from a terminal beforehand.
 
